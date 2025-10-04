@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع موسيقي تفاعلي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* الصفحة الأولى */
+        #page1 {
+            height: 100vh;
+            background: linear-gradient(135deg, #FFDAB9 0%, #eb0707 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            transition: opacity 1s ease;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+        
+        .play-btn {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .play-btn:hover {
+            background: #e91e63;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-btn:active {
+            transform: translateY(1px);
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        /* الصفحة الثانية */
+        #page2 {
+            height: 100vh;
+            position: relative;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        #background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            z-index: -1;
+            background-color: black;
+        }
+        
+        .content {
+            background: transparent;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .page2-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .page2-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        /* أزرار التحكم */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 25px;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+        
+        .control-btn:hover {
+            background: white;
+            color: black;
+            text-shadow: none;
+            transform: translateY(-2px);
+        }
+        
+        /* تأثيرات الانتقال */
+        .fade-out {
+            opacity: 0;
+        }
+        
+        .fade-in {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- الصفحة الأولى -->
+    <div id="page1" class="fade-in">
+        <div class="logo">🎵</div>
+        <h1 class="title">استمع إلى الموسيقى</h1>
+        <p class="subtitle">انقر على الزر للاستماع إلى الأغنية والانتقال إلى عالم الموسيقى</p>
+        <button class="play-btn" onclick="playSongAndNavigate()">تشغيل الأغنية</button>
+        
+        <!-- عناصر الصوت المخفية -->
+        <audio id="song1">
+            <source src="Tiktok_1758572902392.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+        </audio>
+        <audio id="song2">
+            <source src="Tiktok_1760263912119.mp3" type="audio/mpeg">
+            متصفحك لا يدعم تشغيل الصوتيات.
+        </audio>
+    </div>
+    
+    <!-- الصفحة الثانية -->
+    <div id="page2">
+        <video id="background-video" autoplay muted loop>
+            <source src="WhatsApp Video 2025-10-04 at 10.52.48 PM.mp4" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+        
+        <div class="content">
+            <h2 class="page2-title">لن انساك  </h2>
+            <p class="page2-text">
+                لَنْ أَنْسَاكِ إِلَى الأَبَدِ وَمَا دُمْتُ أَحْيَا   مَهْمَا طَالَ البُعَادُ وَطَالَ السَّفَرْ
+              لَوْ تَغِيبِينَ سَنَوَاتٍ وَتَمْضِي الأَيَّامُ     تَبْقَى صُورَتُكِ فِي العَيْنَيْنِ وَالأَوْهَامِ
+            </p>
+            
+            <!-- أزرار التحكم -->
+            <div class="controls">
+                <button class="control-btn" onclick="playNextSong()">الأغنية التالية</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const song1 = document.getElementById('song1');
+        const song2 = document.getElementById('song2');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        
+        let currentSong = song1;
+        let isPlaying = false;
+        
+        function playSongAndNavigate() {
+            // تشغيل الأغنية الأولى
+            currentSong = song1;
+            currentSong.play();
+            isPlaying = true;
+            
+            // إضافة تأثير التلاشي للصفحة الأولى
+            page1.classList.remove('fade-in');
+            page1.classList.add('fade-out');
+            
+            // الانتقال إلى الصفحة الثانية بعد التأثير
+            setTimeout(() => {
+                page1.style.display = 'none';
+                page2.style.display = 'flex';
+                page2.classList.add('fade-in');
+            }, 1000);
+        }
+        
+        function playNextSong() {
+            // إيقاف الأغنية الحالية
+            currentSong.pause();
+            currentSong.currentTime = 0;
+            
+            // تغيير الأغنية
+            if (currentSong === song1) {
+                currentSong = song2;
+            } else {
+                currentSong = song1;
+            }
+            
+            // تشغيل الأغنية الجديدة
+            currentSong.play();
+            isPlaying = true;
+        }
+        
+        // إضافة مستمع للأحداث عندما تنتهي الأغنية
+        song1.addEventListener('ended', function() {
+            isPlaying = false;
+        });
+        
+        song2.addEventListener('ended', function() {
+            isPlaying = false;
+        });
+    </script>
+</body>
+</html>
